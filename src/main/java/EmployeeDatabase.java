@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,19 +25,19 @@ public class EmployeeDatabase {
      * data structures in Java.
      */
     public EmployeeDatabase() {
-        employees = new ArrayList<Employee>();
+        employees = new ArrayList<>();
     }
 
     /**
      * Returns the manager for the given employee.
      *
-     * @param employee
-     * @return
+     * @param employee the employee whose manager is going to be called
+     * @return the manager of the employee above.
      */
     Employee findManager(final Employee employee) {
         Employee manager = null;
         for (int i = 0; i < employees.size(); i++) {
-            if (employees.get(i).getName() == employee.getManager()) {
+            if (employees.get(i).getName().equals(employee.getManager())) {
                 manager = employees.get(i);
                 break;
             }
@@ -53,9 +54,31 @@ public class EmployeeDatabase {
      * @return int
      */
     public int countManagersAbove(final Employee employee) {
-        /*
-         * Implement this function
-         */
+
+        int eplace = 0;
+
+        List<String> managers = new ArrayList<>();
+
+        for (int i = 0; i < employees.size(); i++) {
+            if(employees.get(i) == employee) {
+                eplace = i;
+            }
+        }
+
+        for (int i = eplace + 1; i < employees.size(); i++) {
+            managers.add(employees.get(i).getManager());
+        }
+
+        return managers.size();
+
+    }
+
+    public int countManagersAboveR(final Employee employee) {
+        Employee manager = findManager(employee);
+        if (manager == null) {
+            return 0;
+        }
+        return 1 + countManagersAbove(manager);
     }
 
     /**
@@ -67,9 +90,15 @@ public class EmployeeDatabase {
      * @return int
      */
     public int countEmployeesUnder(final Employee employee) {
+
+        int count = 0;
+
+
         /*
          * Implement this function
          */
+
+        return count;
     }
 
     /**
